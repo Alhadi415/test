@@ -1,25 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  renderMenu();
+  loadLecture(17); // تحميل المحاضرة 17 مباشرةً
 });
-
-function renderMenu() {
-  const container = document.getElementById('quiz-container');
-  container.innerHTML = ""; // تنظيف الحاوية
-
-  const menu = document.createElement('div');
-  menu.className = 'menu';
-
-  // إنشاء قائمة المحاضرات
-  for (let i = 1; i <= 1; i++) {
-    const button = document.createElement('button');
-    button.textContent = `Lecture ${i}`;
-    button.className = 'lecture-button';
-    button.addEventListener('click', () => loadLecture(i));
-    menu.appendChild(button);
-  }
-
-  container.appendChild(menu);
-}
 
 function loadLecture(lectureNumber) {
   const scriptId = `lecture-${lectureNumber}-script`;
@@ -49,7 +30,10 @@ function renderQuiz() {
   const backButton = document.createElement('button');
   backButton.textContent = "Back to Menu";
   backButton.className = 'back-button';
-  backButton.addEventListener('click', renderMenu);
+  backButton.addEventListener('click', () => {
+    // يمكنك إضافة وظيفة العودة إلى القائمة هنا إذا لزم الأمر
+    window.location.reload(); // إعادة تحميل الصفحة للعودة إلى البداية
+  });
   quizContainer.appendChild(backButton);
 
   questions.forEach((q, index) => {
@@ -131,4 +115,3 @@ function checkAnswer(questionIndex, selectedOption) {
     feedbackDiv.appendChild(explanationImg);
   }
 }
-
